@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  /* Color */
+  --surface: #ffffff;
+  --text: #172b4d;
+  --viewport-dynamic-height: 100dvh;
+  --app-height: var(--viewport-dynamic-height);
+}

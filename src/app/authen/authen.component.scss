@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: var(--app-height);
+}
+
+/* app の表示スタイル */
+.app {
+  display: flex;
+  height: var(--app-height);
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+}
