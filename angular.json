@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "authen_web": {
+    "authen-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -64,10 +64,10 @@
           },
           "configurations": {
             "prod": {
-              "buildTarget": "authen_web:build:prod"
+              "buildTarget": "authen-web:build:prod"
             },
             "local": {
-              "buildTarget": "authen_web:build:local"
+              "buildTarget": "authen-web:build:local"
             }
           },
           "defaultConfiguration": "local"
