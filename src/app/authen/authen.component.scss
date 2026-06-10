@@ -8,8 +8,20 @@
   --authen-gap: 20px;
   --authen-gap-small: 12px;
   --authen-radius: 16px;
-  --authen-border: 1px solid var(--border);
-  --authen-shadow: 0 18px 48px var(--shadow);
+  --authen-surface-muted: #f4f7fb;
+  --authen-text-muted: #5e6c84;
+  --authen-border-color: #dfe1e6;
+  --authen-primary: #0c66e4;
+  --authen-primary-text: #ffffff;
+  --authen-focus-ring: #d7e7ff;
+  --authen-shadow-color: #091e422e;
+  --authen-info-surface: #e9f2ff;
+  --authen-error-surface: #ffebe6;
+  --authen-error-text: #ae2a19;
+  --authen-success-surface: #dcfff1;
+  --authen-success-text: #216e4e;
+  --authen-border: 1px solid var(--authen-border-color);
+  --authen-shadow: 0 18px 48px var(--authen-shadow-color);
 }
 
 .app {
@@ -17,7 +29,7 @@
   min-height: var(--app-height);
   flex-direction: column;
   overflow: hidden;
-  background: var(--surface-muted);
+  background: var(--authen-surface-muted);
   color: var(--text);
 }
 
@@ -51,7 +63,7 @@
 }
 
 .login-eyebrow {
-  color: var(--text-muted);
+  color: var(--authen-text-muted);
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -59,7 +71,7 @@
 
 .login-description,
 .redirect-notice {
-  color: var(--text-muted);
+  color: var(--authen-text-muted);
   line-height: 1.6;
 }
 
@@ -67,7 +79,7 @@
   margin: 0 0 var(--authen-gap);
   padding: var(--authen-gap-small);
   border-radius: calc(var(--authen-radius) / 2);
-  background: var(--info-surface);
+  background: var(--authen-info-surface);
 }
 
 .login-form,
@@ -100,8 +112,8 @@
 }
 
 .form-field input:focus {
-  border-color: var(--primary);
-  outline: 2px solid var(--focus-ring);
+  border-color: var(--authen-primary);
+  outline: 2px solid var(--authen-focus-ring);
   outline-offset: 2px;
 }
 
@@ -119,21 +131,21 @@
 }
 
 .message-error {
-  background: var(--error-surface);
-  color: var(--error-text);
+  background: var(--authen-error-surface);
+  color: var(--authen-error-text);
 }
 
 .message-success {
-  background: var(--success-surface);
-  color: var(--success-text);
+  background: var(--authen-success-surface);
+  color: var(--authen-success-text);
 }
 
 .login-button {
   padding: 12px 16px;
   border: 0;
   border-radius: calc(var(--authen-radius) / 2);
-  background: var(--primary);
-  color: var(--primary-text);
+  background: var(--authen-primary);
+  color: var(--authen-primary-text);
   cursor: pointer;
   font: inherit;
   font-weight: 700;
