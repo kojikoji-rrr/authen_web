@@ -11,9 +11,10 @@ import { ApiError, AuthenApiService } from './services/authen-api.service';
 })
 export class AuthenComponent implements OnInit {
   readonly apiBusy;
+  readonly credentialInputType = 'password';
 
   userId = '';
-  password = '';
+  credential = '';
   redirect: string | null = null;
   errorMessage = '';
   loginSucceeded = false;
@@ -31,7 +32,7 @@ export class AuthenComponent implements OnInit {
     this.loginSucceeded = false;
 
     const userId = this.userId.trim();
-    if (!userId || !this.password) {
+    if (!userId || !this.credential) {
       this.errorMessage = 'ユーザーIDとパスワードを入力してください。';
       return;
     }
@@ -39,7 +40,7 @@ export class AuthenComponent implements OnInit {
     try {
       const result = await this.api.login({
         userId,
-        password: this.password,
+        password: this.credential,
         ...(this.redirect ? { redirect: this.redirect } : {}),
       });
 
@@ -49,7 +50,7 @@ export class AuthenComponent implements OnInit {
         return;
       }
 
-      this.password = '';
+      this.credential = '';
       this.loginSucceeded = true;
     } catch (error) {
       this.errorMessage = this.getErrorMessage(error);
