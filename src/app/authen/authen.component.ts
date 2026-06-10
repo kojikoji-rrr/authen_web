@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiError, AuthenApiService } from './services/authen-api.service';
 
 @Component({
@@ -15,9 +16,11 @@ export class AuthenComponent implements OnInit {
   password = '';
   redirect: string | null = null;
   errorMessage = '';
-  successMessage = '';
 
-  constructor(private readonly api: AuthenApiService) {
+  constructor(
+    private readonly api: AuthenApiService,
+    private readonly router: Router,
+  ) {
     this.apiBusy = api.busy;
   }
 
@@ -27,7 +30,6 @@ export class AuthenComponent implements OnInit {
 
   async login(): Promise<void> {
     this.errorMessage = '';
-    this.successMessage = '';
 
     try {
       const response = await this.api.login({
@@ -39,8 +41,7 @@ export class AuthenComponent implements OnInit {
         location.assign(response.redirect);
         return;
       }
-      this.password = '';
-      this.successMessage = 'success.';
+      await this.router.navigate(['/result']);
     } catch (error) {
       this.errorMessage = error instanceof ApiError ? error.message : 'ログインに失敗しました。';
     }
