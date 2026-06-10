@@ -2,7 +2,44 @@
 :root {
   /* Color */
   --surface: #ffffff;
+  --surface-muted: #f4f6f8;
+  --surface-info: #eef6ff;
+  --surface-error: #fff1f1;
+  --surface-success: #eefaf2;
   --text: #172b4d;
+  --text-muted: #6b778c;
+  --border: #dfe1e6;
+  --primary: #0c66e4;
+  --primary-contrast: #ffffff;
+  --danger: #ae2e24;
+  --success: #216e4e;
+
+  /* Layout */
   --viewport-dynamic-height: 100dvh;
   --app-height: var(--viewport-dynamic-height);
+  --login-card-width: 28rem;
+  --space-page: 1.5rem;
+  --space-card: 2rem;
+  --space-section: 1.5rem;
+  --space-form: 1rem;
+  --space-xs: 0.375rem;
+  --space-control-y: 0.75rem;
+  --space-control-x: 0.875rem;
+  --space-message-y: 0.75rem;
+  --space-message-x: 0.875rem;
+
+  /* Typography */
+  --font-size-title: 1.75rem;
+  --font-size-body: 0.95rem;
+  --font-size-caption: 0.75rem;
+  --font-weight-bold: 600;
+  --letter-spacing-label: 0.08em;
+
+  /* Effect */
+  --radius-card: 1rem;
+  --radius-control: 0.625rem;
+  --shadow-card: 0 1rem 2.5rem rgb(9 30 66 / 14%);
+  --focus-ring: 0 0 0 0.2rem rgb(12 102 228 / 20%);
+  --focus-ring-offset: 0.125rem;
+  --opacity-disabled: 0.65;
 }
