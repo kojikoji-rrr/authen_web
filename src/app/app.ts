@@ -1,15 +1,17 @@
 import { ApplicationConfig, Component, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { AuthenComponent } from './authen/authen.component';
+import { provideRouter, RouterOutlet } from '@angular/router';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    provideRouter(routes),
   ],
 };
 
 @Component({
   selector: 'app-root',
-  imports: [AuthenComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

@@ -1,15 +1,24 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { APP_CONFIG } from '../../common/constant/constant';
+import { AuthenLoginRequest, AuthenLoginResponse } from '../models/authen-login.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenApiService {
   private readonly pendingRequests = signal(0);
   readonly busy = computed(() => this.pendingRequests() > 0);
 
+  login(request: AuthenLoginRequest): Promise<AuthenLoginResponse> {
+    return this.request<AuthenLoginResponse>('/login', {
+      method: 'POST',
+      body: JSON.stringify(request),
+    });
+  }
+
   private async request<T>(path: string, init: RequestInit = {}): Promise<T> {
     return this.withPending(async () => {
       const response = await fetch(`${APP_CONFIG.apiBaseUrl}${path}`, {
         ...init,
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           ...(init.headers ?? {}),
@@ -17,7 +26,7 @@ export class AuthenApiService {
       });
 
       if (!response.ok) {
-        throw new ApiError(response.status, await response.text());
+        throw new ApiError(response.status, await errorMessage(response));
       }
 
       if (response.status === 204) {
@@ -41,5 +50,18 @@ export class AuthenApiService {
 export class ApiError extends Error {
   constructor(readonly status: number, message: string) {
     super(message);
+  }
+}
+
+async function errorMessage(response: Response): Promise<string> {
+  const text = await response.text();
+  if (!text) {
+    return `Request failed. (${response.status})`;
+  }
+  try {
+    const body = JSON.parse(text) as { message?: unknown };
+    return typeof body.message === 'string' ? body.message : text;
+  } catch {
+    return text;
   }
 }
