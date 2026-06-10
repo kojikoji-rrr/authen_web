@@ -1,14 +1,140 @@
 :host {
   display: block;
   height: var(--app-height);
+
+  --authen-card-width: 420px;
+  --authen-page-padding: 24px;
+  --authen-card-padding: 32px;
+  --authen-gap: 20px;
+  --authen-gap-small: 12px;
+  --authen-radius: 16px;
+  --authen-border: 1px solid var(--border);
+  --authen-shadow: 0 18px 48px var(--shadow);
 }
 
-/* app の表示スタイル */
 .app {
   display: flex;
-  height: var(--app-height);
+  min-height: var(--app-height);
   flex-direction: column;
   overflow: hidden;
+  background: var(--surface-muted);
+  color: var(--text);
+}
+
+.login-page {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: var(--authen-page-padding);
+}
+
+.login-card {
+  width: min(100%, var(--authen-card-width));
+  padding: var(--authen-card-padding);
+  border: var(--authen-border);
+  border-radius: var(--authen-radius);
+  background: var(--surface);
+  box-shadow: var(--authen-shadow);
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--authen-gap-small);
+  margin-bottom: var(--authen-gap);
+}
+
+.login-header h1,
+.login-header p {
+  margin: 0;
+}
+
+.login-eyebrow {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.login-description,
+.redirect-notice {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.redirect-notice {
+  margin: 0 0 var(--authen-gap);
+  padding: var(--authen-gap-small);
+  border-radius: calc(var(--authen-radius) / 2);
+  background: var(--info-surface);
+}
+
+.login-form,
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form {
+  gap: var(--authen-gap);
+}
+
+.form-field {
+  gap: var(--authen-gap-small);
+}
+
+.form-field span {
+  font-weight: 600;
+}
+
+.form-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: var(--authen-border);
+  border-radius: calc(var(--authen-radius) / 2);
   background: var(--surface);
   color: var(--text);
+  font: inherit;
+}
+
+.form-field input:focus {
+  border-color: var(--primary);
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.form-field input:disabled,
+.login-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.message {
+  margin: 0;
+  padding: var(--authen-gap-small);
+  border-radius: calc(var(--authen-radius) / 2);
+  line-height: 1.6;
+}
+
+.message-error {
+  background: var(--error-surface);
+  color: var(--error-text);
+}
+
+.message-success {
+  background: var(--success-surface);
+  color: var(--success-text);
+}
+
+.login-button {
+  padding: 12px 16px;
+  border: 0;
+  border-radius: calc(var(--authen-radius) / 2);
+  background: var(--primary);
+  color: var(--primary-text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
 }
