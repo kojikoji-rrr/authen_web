@@ -1,3 +1,51 @@
 <div class="app">
-  Hello Authen App
+  <main class="login-page" aria-labelledby="login-title">
+    <section class="login-card">
+      <div class="login-header">
+        <p class="login-eyebrow">Kojica Auth</p>
+        <h1 id="login-title">ログイン</h1>
+        <p class="login-description">ユーザーIDとパスワードを入力してください。</p>
+      </div>
+
+      <p *ngIf="redirect" class="redirect-notice">
+        ログイン後、要求元の画面へ移動します。
+      </p>
+
+      <form class="login-form" (ngSubmit)="login()">
+        <label class="form-field">
+          <span>ユーザーID</span>
+          <input
+            name="userId"
+            type="text"
+            [(ngModel)]="userId"
+            [disabled]="apiBusy()"
+            required
+          />
+        </label>
+
+        <label class="form-field">
+          <span>パスワード</span>
+          <input
+            name="credential"
+            [type]="credentialInputType"
+            [(ngModel)]="credential"
+            [disabled]="apiBusy()"
+            required
+          />
+        </label>
+
+        <p *ngIf="errorMessage" class="message message-error" role="alert">
+          {{ errorMessage }}
+        </p>
+
+        <p *ngIf="loginSucceeded" class="message message-success" role="status">
+          success.
+        </p>
+
+        <button class="login-button" type="submit" [disabled]="apiBusy()">
+          {{ apiBusy() ? 'ログイン中...' : 'ログイン' }}
+        </button>
+      </form>
+    </section>
+  </main>
 </div>
