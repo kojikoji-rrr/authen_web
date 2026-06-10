@@ -26,6 +26,11 @@ export class AuthenComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.redirect = new URLSearchParams(location.search).get('redirect');
+    try {
+      await this.api.ensureClientCookie();
+    } catch (error) {
+      console.warn('Failed to initialize client cookie.', error);
+    }
   }
 
   async login(): Promise<void> {

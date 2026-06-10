@@ -7,6 +7,12 @@ export class AuthenApiService {
   private readonly pendingRequests = signal(0);
   readonly busy = computed(() => this.pendingRequests() > 0);
 
+  ensureClientCookie(): Promise<void> {
+    return this.request<void>('/client-token', {
+      method: 'GET',
+    });
+  }
+
   login(request: AuthenLoginRequest): Promise<AuthenLoginResponse> {
     return this.request<AuthenLoginResponse>('/login', {
       method: 'POST',
