@@ -1,3 +1,53 @@
-<div class="app">
-  Hello Authen App
-</div>
+<main class="authen-page">
+  <section class="login-card" aria-labelledby="login-title">
+    <div class="login-card__header">
+      <p class="login-card__label">Kojica Auth</p>
+      <h1 id="login-title" class="login-card__title">ログイン</h1>
+      <p class="login-card__description">ユーザーIDとパスワードを入力してください。</p>
+    </div>
+
+    <form class="login-form" (ngSubmit)="login()">
+      <label class="login-form__field">
+        <span class="login-form__label">ユーザーID</span>
+        <input
+          class="login-form__input"
+          name="userId"
+          type="text"
+          autocomplete="username"
+          required
+          [(ngModel)]="userId"
+          [disabled]="apiBusy()"
+        />
+      </label>
+
+      <label class="login-form__field">
+        <span class="login-form__label">パスワード</span>
+        <input
+          class="login-form__input"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+          [(ngModel)]="password"
+          [disabled]="apiBusy()"
+        />
+      </label>
+
+      @if (redirect) {
+        <p class="login-form__notice">ログイン後、要求元の画面へ戻ります。</p>
+      }
+
+      @if (errorMessage) {
+        <p class="login-form__message login-form__message--error" role="alert">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p class="login-form__message login-form__message--success">{{ successMessage }}</p>
+      }
+
+      <button class="login-form__button" type="submit" [disabled]="apiBusy()">
+        {{ apiBusy() ? 'ログイン中...' : 'ログイン' }}
+      </button>
+    </form>
+  </section>
+</main>
