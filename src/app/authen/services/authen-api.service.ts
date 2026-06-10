@@ -32,7 +32,11 @@ export class AuthenApiService {
       });
 
       if (!response.ok) {
-        throw new ApiError(response.status, await errorMessage(response));
+        const text = await response.text();
+        if (isCloudflareBlockResponse(response, text)) {
+          return reloadAfterCloudflareBlock();
+        }
+        throw new ApiError(response.status, parseErrorMessage(response.status, text));
       }
 
       if (response.status === 204) {
@@ -59,10 +63,9 @@ export class ApiError extends Error {
   }
 }
 
-async function errorMessage(response: Response): Promise<string> {
-  const text = await response.text();
+function parseErrorMessage(status: number, text: string): string {
   if (!text) {
-    return `Request failed. (${response.status})`;
+    return `Request failed. (${status})`;
   }
   try {
     const body = JSON.parse(text) as { message?: unknown };
@@ -70,4 +73,26 @@ async function errorMessage(response: Response): Promise<string> {
   } catch {
     return text;
   }
+}
+
+function isCloudflareBlockResponse(response: Response, text: string): boolean {
+  if (response.status !== 403) {
+    return false;
+  }
+
+  const contentType = response.headers.get('content-type')?.toLowerCase() ?? '';
+  if (!contentType.includes('text/html')) {
+    return false;
+  }
+
+  return (
+    text.includes('Attention Required! | Cloudflare') ||
+    text.includes('Sorry, you have been blocked') ||
+    text.includes('cf-error-details')
+  );
+}
+
+function reloadAfterCloudflareBlock(): Promise<never> {
+  window.location.reload();
+  return new Promise<never>(() => undefined);
 }
