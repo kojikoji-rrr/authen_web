@@ -3,12 +3,123 @@
   height: var(--app-height);
 }
 
-/* app の表示スタイル */
-.app {
+.authen-page {
+  display: grid;
+  min-height: var(--app-height);
+  place-items: center;
+  overflow: auto;
+  background: var(--surface-muted);
+  color: var(--text);
+  padding: var(--space-page);
+}
+
+.login-card {
+  width: min(100%, var(--login-card-width));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-card);
+}
+
+.login-card__header {
   display: flex;
-  height: var(--app-height);
   flex-direction: column;
-  overflow: hidden;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-section);
+}
+
+.login-card__label {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-caption);
+  letter-spacing: var(--letter-spacing-label);
+  text-transform: uppercase;
+}
+
+.login-card__title {
+  margin: 0;
+  color: var(--text);
+  font-size: var(--font-size-title);
+}
+
+.login-card__description {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-body);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-form);
+}
+
+.login-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.login-form__label {
+  color: var(--text);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+}
+
+.login-form__input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
   background: var(--surface);
   color: var(--text);
+  font: inherit;
+  padding: var(--space-control-y) var(--space-control-x);
+}
+
+.login-form__input:focus {
+  border-color: var(--primary);
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.login-form__input:disabled,
+.login-form__button:disabled {
+  cursor: not-allowed;
+  opacity: var(--opacity-disabled);
+}
+
+.login-form__notice,
+.login-form__message {
+  margin: 0;
+  border-radius: var(--radius-control);
+  font-size: var(--font-size-body);
+  padding: var(--space-message-y) var(--space-message-x);
+}
+
+.login-form__notice {
+  background: var(--surface-info);
+  color: var(--text);
+}
+
+.login-form__message--error {
+  background: var(--surface-error);
+  color: var(--danger);
+}
+
+.login-form__message--success {
+  background: var(--surface-success);
+  color: var(--success);
+}
+
+.login-form__button {
+  border: none;
+  border-radius: var(--radius-control);
+  background: var(--primary);
+  color: var(--primary-contrast);
+  cursor: pointer;
+  font: inherit;
+  font-weight: var(--font-weight-bold);
+  padding: var(--space-control-y) var(--space-control-x);
 }
