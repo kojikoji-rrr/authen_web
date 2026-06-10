@@ -4,13 +4,21 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Development server
 
-To start a local development server, run:
+画面開発用にAngularの開発サーバーを起動する場合は、以下を実行します。
 
 ```bash
-ng serve
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Once the server is running, open your browser and navigate to `http://localhost:4201/`. The application will automatically reload whenever you modify any of the source files.
+
+Cloudflare Pages 相当の配信で確認する場合は、以下を実行します。
+
+```bash
+npm run pages:dev
+```
+
+`pages:dev` は `npm run build` 後に `wrangler pages dev` で `dist/authen-web/browser` を配信します。
 
 ## Code scaffolding
 
