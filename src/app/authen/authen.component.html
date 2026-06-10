@@ -41,10 +41,6 @@
         <p class="login-form__message login-form__message--error" role="alert">{{ errorMessage }}</p>
       }
 
-      @if (successMessage) {
-        <p class="login-form__message login-form__message--success">{{ successMessage }}</p>
-      }
-
       <button class="login-form__button" type="submit" [disabled]="apiBusy()">
         {{ apiBusy() ? 'ログイン中...' : 'ログイン' }}
       </button>
